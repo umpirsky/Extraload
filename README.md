@@ -27,6 +27,14 @@ We can start with few simple loaders, like csv and console.
 In addition, we will have a pipeline that will glue them together and make sure library is easy to use. 
 Given extractor, transformer and loader, pipeline will be capable to handle ETL.
 
+```php
+(new Extraload\Pipeline(
+    new XmlLoader('http://umpirsky.com/'),
+    new AwesomeTransformer(),
+    new ConsoleLoader()
+))->run();
+```
+
 ## Events
 
 We should use some events to make it easyer to hook into ETL pipeline for easier logging, progress tracking...
