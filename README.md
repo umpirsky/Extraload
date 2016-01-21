@@ -14,6 +14,13 @@ Inspired by friends @docteurklein awesome library [php-etl](https://github.com/d
 
 We can start with few simple extractors, like json and csv.
 
+## Transform
+
+Interface is enough, maybe a callback transformer and one chainable that allows chaining of multiple transformers.
+
+## Load
+
+We can start with few simple loaders, like csv and console.
 
 ## Pipeline
 
