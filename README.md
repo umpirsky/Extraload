@@ -60,3 +60,7 @@ Ability to run E, T and L in parallel. Probably using services like RabbitMQ or 
 Should be developer friendly, easy to understand, use and flexible to extend.
 
 Useful debugging things like console [table](http://symfony.com/doc/current/components/console/helpers/table.html) loeader can also help a lot.
+
+## Feedback
+
+If you have any ideas, comments, use cases...don't hesitate to open issues or PRs.
