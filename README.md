@@ -34,3 +34,9 @@ Not high priority, but there should also be some power that will make library ea
 ## Parallelization
 
 Ability to run E, T and L in parallel. Probably using services like RabbitMQ or similar.
+
+## DX
+
+Should be developer friendly, easy to understand, use and flexible to extend.
+
+Useful debugging things like console [table](http://symfony.com/doc/current/components/console/helpers/table.html) loeader can also help a lot.
