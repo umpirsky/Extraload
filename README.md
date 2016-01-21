@@ -1,2 +1,2 @@
 # Extraload
-Extraload - powerful ETL library.
+Powerful ETL library.
