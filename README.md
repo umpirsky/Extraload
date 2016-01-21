@@ -37,7 +37,7 @@ Not high priority, but there should also be some power that will make library ea
 
 ```php
 (new Extraload\DynamicPipeline())
-    ->extract('umpirsky.com/sample.xml')
+    ->extract('http://umpirsky.com/sample.xml')
     ->transform('array_change_key_case')
     ->load('/home/umpirsky/sample.json')
 ;
