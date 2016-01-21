@@ -10,6 +10,11 @@ Powerful ETL library.
 
 Inspired by friends @docteurklein awesome library [php-etl](https://github.com/docteurklein/php-etl), it will provide 3 main ETL interfaces. 
 
+## Extract
+
+We can start with few simple extractors, like json and csv.
+
+
 ## Pipeline
 
 In addition, we will have a pipeline that will glue them together and make sure library is easy to use. 
