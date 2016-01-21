@@ -17,7 +17,7 @@ Given extractor, transformer and loader, pipeline will be capable to handle ETL.
 
 ## Events
 
-We should use some events to make it easyer to hook into ETL pipeline.
+We should use some events to make it easyer to hook into ETL pipeline for easier logging, progress tracking...
 
 ## Easy to use
 
