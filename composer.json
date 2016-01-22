@@ -17,7 +17,9 @@
         "symfony/console": "^3.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^2.4"
+        "phpspec/phpspec": "^2.4",
+        "behat/behat": "v3.1.0rc1",
+        "phpunit/phpunit": "^5.1"
     },
     "license": "MIT",
     "authors": [
