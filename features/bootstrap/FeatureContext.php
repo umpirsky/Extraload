@@ -1,10 +1,8 @@
 <?php
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Extraload\Pipeline\DefaultPipeline;
@@ -24,7 +22,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function initialize()
     {
-        $this->workingDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'etl' . DIRECTORY_SEPARATOR;
+        $this->workingDir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'etl'.DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -41,7 +39,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function aFileNamedWith($name, PyStringNode $content)
     {
         $this->createFile(
-            $this->workingFile = $this->workingDir . $name,
+            $this->workingFile = $this->workingDir.$name,
             $this->stringNodeToString($content)
         );
     }
@@ -103,7 +101,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
         array_shift($files);
 
         foreach ($files as $file) {
-            $file = $path . DIRECTORY_SEPARATOR . $file;
+            $file = $path.DIRECTORY_SEPARATOR.$file;
             if (is_dir($file)) {
                 $this->clearDirectory($file);
             } else {

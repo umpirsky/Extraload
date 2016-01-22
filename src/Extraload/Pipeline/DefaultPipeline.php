@@ -16,8 +16,7 @@ class DefaultPipeline implements PipelineInterface
         ExtractorInterface $extractor,
         TransformerInterface $transformer,
         LoaderInterface $loader
-    )
-    {
+    ) {
         $this->extractor = $extractor;
         $this->transformer = $transformer;
         $this->loader = $loader;
