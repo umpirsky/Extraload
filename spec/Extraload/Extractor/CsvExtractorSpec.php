@@ -3,7 +3,6 @@
 namespace spec\Extraload\Extractor;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class CsvExtractorSpec extends ObjectBehavior
 {
