@@ -1,0 +1,29 @@
+{
+    "name": "umpirsky/extraload",
+    "description": "Powerful ETL library.",
+    "type": "library",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saša Stamenković",
+            "email": "umpirsky@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Extraload\\": "src/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.1-dev"
+        }
+    }
+}
