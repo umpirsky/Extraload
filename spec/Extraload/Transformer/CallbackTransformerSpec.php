@@ -19,7 +19,7 @@ class CallbackTransformerSpec extends ObjectBehavior
 
     function it_implements_transformer_interface()
     {
-        $this->shouldHaveType('Extraload\Transformer\TransformerInterface');
+        $this->shouldImplement('Extraload\Transformer\TransformerInterface');
     }
 
     function it_transforms_data_using_callback()

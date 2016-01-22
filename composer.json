@@ -1,9 +1,20 @@
 {
     "name": "umpirsky/extraload",
     "description": "Powerful ETL library.",
+    "keywords": [
+        "etl",
+        "extract",
+        "transform",
+        "convert",
+        "load",
+        "import",
+        "export"
+    ],
+    "homepage": "http://umpirsky.com",
     "type": "library",
     "require": {
-        "php": ">=5.5.9"
+        "php": ">=5.5.9",
+        "symfony/console": "^3.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.4"
