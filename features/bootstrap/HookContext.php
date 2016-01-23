@@ -1,9 +1,8 @@
 <?php
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 
-class HookContext extends BaseContext implements Context, SnippetAcceptingContext
+class HookContext extends BaseContext implements Context
 {
     /**
      * @BeforeScenario
