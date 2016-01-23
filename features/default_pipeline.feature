@@ -11,7 +11,7 @@ Feature: Default pipeline
         960-425-059-0, The Lord of the Rings, J. R. R. Tolkien
         80-902734-1-6, And Then There Were None, Agatha Christie
         """
-     And I create csv to console pipeline
+    When I create csv to console pipeline
      And I process it
     Then I should see in console:
         """
