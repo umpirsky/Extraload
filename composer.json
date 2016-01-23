@@ -13,13 +13,18 @@
     "homepage": "http://umpirsky.com",
     "type": "library",
     "require": {
-        "php": ">=5.5.9",
-        "symfony/console": "^3.0"
+        "php": ">=5.5.9"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.4",
         "behat/behat": "v3.1.0rc1",
-        "phpunit/phpunit": "^5.1"
+        "phpunit/phpunit": "^5.1",
+        "symfony/console": "^3.0",
+        "doctrine/dbal": "^2.5"
+    },
+    "suggest": {
+        "doctrine/dbal": "Allows loading data into database using DBAL loader",
+        "symfony/console": "Allows displaying tabular data in console"
     },
     "license": "MIT",
     "authors": [
