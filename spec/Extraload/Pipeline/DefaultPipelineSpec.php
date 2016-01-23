@@ -34,6 +34,7 @@ class DefaultPipelineSpec extends ObjectBehavior
     )
     {
         $extractor->extract()->shouldBeCalled()->willReturn(null);
+        $transformer->transform(Argument::any())->shouldNotBeCalled();
         $loader->flush()->shouldBeCalled();
 
         $this->process();
