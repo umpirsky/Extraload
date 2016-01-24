@@ -3,6 +3,7 @@
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Tester\Exception\PendingException;
 use Doctrine\DBAL\DriverManager;
 use Behat\Gherkin\Node\PyStringNode;
 use Symfony\Component\Console\Helper\Table;
@@ -11,6 +12,7 @@ use Extraload\Pipeline\DefaultPipeline;
 use Extraload\Extractor\CsvExtractor;
 use Extraload\Transformer\NoopTransformer;
 use Extraload\Transformer\CallbackTransformer;
+use Extraload\Transformer\TransformerChain;
 use Extraload\Loader\ConsoleLoader;
 use Extraload\Loader\Doctrine\DbalLoader;
 
@@ -31,13 +33,13 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
     }
 
     /**
-     * @Given I create csv to console pipeline
+     * @Given I create csv to console pipeline using :transformer transformer
      */
-    public function iCreateCsvToConsolePipeline()
+    public function iCreateCsvToConsolePipelineUsingTransformer($transformer)
     {
         return $this->pipeline = new DefaultPipeline(
             $this->createCsvExtractor(),
-            new NoopTransformer(),
+            $this->createTransformer($transformer),
             new ConsoleLoader(
                 new Table($this->output = new BufferedOutput())
             )
@@ -51,13 +53,7 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
     {
         return $this->pipeline = new DefaultPipeline(
             $this->createCsvExtractor(),
-            new CallbackTransformer(function ($data) {
-                return [
-                    'isbn' => $data[0],
-                    'title' => $data[1],
-                    'author' => $data[2],
-                ];
-            }),
+            $this->createTransformer('callable'),
             new DbalLoader(
                 $this->getConnection(),
                 $this->workingTable
@@ -105,6 +101,37 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
     private function createCsvExtractor()
     {
         return new CsvExtractor(new \SplFileObject($this->workingFile));
+    }
+
+    private function createTransformer($type)
+    {
+        switch ($type) {
+            case 'callable':
+                return new CallbackTransformer(function ($data) {
+                    return [
+                        'isbn' => $data[0],
+                        'title' => $data[1],
+                        'author' => $data[2],
+                    ];
+                });
+
+            case 'chain':
+                return new TransformerChain([
+                    new CallbackTransformer(function ($data) {
+                        unset($data[0]);
+
+                        return $data;
+                    }),
+                    new CallbackTransformer(function ($data) {
+                        return [
+                            'title' => $data[1],
+                            'author' => $data[2],
+                        ];
+                    })
+                ]);
+        }
+
+        throw new PendingException(sprintf('Implement %s transformer creator.', $type));
     }
 
     private function getConnection()
