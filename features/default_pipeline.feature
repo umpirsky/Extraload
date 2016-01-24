@@ -13,7 +13,7 @@ Feature: Default pipeline
             """
 
     Scenario: Dump CSV file to console table
-        Given I create csv to console pipeline
+        Given I create csv to console pipeline using "callable" transformer
           And I process it
          Then I should see in console:
             """
@@ -22,6 +22,18 @@ Feature: Default pipeline
             | 9971-5-0210-0 | A Tale of Two Cities  | Charles Dickens  |
             | 960-425-059-0 | The Lord of the Rings | J. R. R. Tolkien |
             +---------------+-----------------------+------------------+
+            """
+
+    Scenario: Dump CSV file to console table using transformer chain
+        Given I create csv to console pipeline using "chain" transformer
+          And I process it
+         Then I should see in console:
+            """
+            +-----------------------+------------------+
+            | Divine Comedy         | Dante Alighieri  |
+            | A Tale of Two Cities  | Charles Dickens  |
+            | The Lord of the Rings | J. R. R. Tolkien |
+            +-----------------------+------------------+
             """
 
     Scenario: Import CSV file into database
