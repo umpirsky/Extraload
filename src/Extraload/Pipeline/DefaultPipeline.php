@@ -2,10 +2,10 @@
 
 namespace Extraload\Pipeline;
 
-use Extraload\Extractor\ExtractorInterface;
-use Extraload\Transformer\TransformerInterface;
-use Extraload\Loader\LoaderInterface;
 use Extraload\Events;
+use Extraload\Extractor\ExtractorInterface;
+use Extraload\Loader\LoaderInterface;
+use Extraload\Transformer\TransformerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
