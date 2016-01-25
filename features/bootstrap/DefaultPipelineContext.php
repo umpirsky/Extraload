@@ -107,7 +107,7 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
     {
         switch ($type) {
             case 'callable':
-                return new CallbackTransformer(function ($data) {
+                return new CallbackTransformer(function($data) {
                     return [
                         'isbn' => $data[0],
                         'title' => $data[1],
@@ -117,12 +117,12 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
 
             case 'chain':
                 return new TransformerChain([
-                    new CallbackTransformer(function ($data) {
+                    new CallbackTransformer(function($data) {
                         unset($data[0]);
 
                         return $data;
                     }),
-                    new CallbackTransformer(function ($data) {
+                    new CallbackTransformer(function($data) {
                         return [
                             'title' => $data[1],
                             'author' => $data[2],
