@@ -35,6 +35,6 @@ class BaseContext implements Context
 
     protected function stringNodeToString(PyStringNode $string)
     {
-        return strtr((string) $string, array("'''" => '"""'));
+        return strtr((string) $string, ["'''" => '"""']);
     }
 }

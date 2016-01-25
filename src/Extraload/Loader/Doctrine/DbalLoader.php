@@ -2,9 +2,9 @@
 
 namespace Extraload\Loader\Doctrine;
 
-use Extraload\Loader\LoaderInterface;
-use Extraload\Loader\AutoFlushLoader;
 use Doctrine\DBAL\Connection;
+use Extraload\Loader\AutoFlushLoader;
+use Extraload\Loader\LoaderInterface;
 
 class DbalLoader extends AutoFlushLoader implements LoaderInterface
 {

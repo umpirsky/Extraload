@@ -1,20 +1,19 @@
 <?php
 
-use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Tester\Exception\PendingException;
-use Doctrine\DBAL\DriverManager;
 use Behat\Gherkin\Node\PyStringNode;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Output\BufferedOutput;
-use Extraload\Pipeline\DefaultPipeline;
+use Behat\Gherkin\Node\TableNode;
+use Doctrine\DBAL\DriverManager;
 use Extraload\Extractor\CsvExtractor;
-use Extraload\Transformer\NoopTransformer;
-use Extraload\Transformer\CallbackTransformer;
-use Extraload\Transformer\TransformerChain;
 use Extraload\Loader\ConsoleLoader;
 use Extraload\Loader\Doctrine\DbalLoader;
+use Extraload\Pipeline\DefaultPipeline;
+use Extraload\Transformer\CallbackTransformer;
+use Extraload\Transformer\TransformerChain;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class DefaultPipelineContext extends BaseContext implements Context, SnippetAcceptingContext
 {
@@ -90,8 +89,7 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
             ->select('*')
             ->from($this->workingTable)
             ->execute()
-            ->fetchAll()
-        ;
+            ->fetchAll();
 
         foreach ($table->getHash() as $key => $expected) {
             PHPUnit_Framework_Assert::assertEquals($expected, $actual[$key]);
@@ -107,27 +105,27 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
     {
         switch ($type) {
             case 'callable':
-                return new CallbackTransformer(function($data) {
+                return new CallbackTransformer(function ($data) {
                     return [
-                        'isbn' => $data[0],
-                        'title' => $data[1],
+                        'isbn'   => $data[0],
+                        'title'  => $data[1],
                         'author' => $data[2],
                     ];
                 });
 
             case 'chain':
                 return new TransformerChain([
-                    new CallbackTransformer(function($data) {
+                    new CallbackTransformer(function ($data) {
                         unset($data[0]);
 
                         return $data;
                     }),
-                    new CallbackTransformer(function($data) {
+                    new CallbackTransformer(function ($data) {
                         return [
-                            'title' => $data[1],
+                            'title'  => $data[1],
                             'author' => $data[2],
                         ];
-                    })
+                    }),
                 ]);
         }
 
