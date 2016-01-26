@@ -21,10 +21,12 @@
         "behat/behat": "v3.1.0rc1",
         "phpunit/phpunit": "^5.1",
         "symfony/console": "^3.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "symfony/property-access": "^3.0"
     },
     "suggest": {
         "doctrine/dbal": "Allows loading data into database using DBAL loader",
+        "symfony/property-access": "Allows applying transformer on property by path",
         "symfony/console": "Allows displaying tabular data in console"
     },
     "license": "MIT",
