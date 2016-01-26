@@ -10,7 +10,6 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Extraload\Pipeline\DefaultPipeline;
 use Extraload\Extractor\CsvExtractor;
-use Extraload\Transformer\NoopTransformer;
 use Extraload\Transformer\CallbackTransformer;
 use Extraload\Transformer\TransformerChain;
 use Extraload\Loader\ConsoleLoader;
@@ -127,7 +126,7 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
                             'title' => $data[1],
                             'author' => $data[2],
                         ];
-                    })
+                    }),
                 ]);
         }
 
