@@ -18,14 +18,6 @@ class BaseContext implements Context
         return $path;
     }
 
-    protected function createFileFromStringNode($name, PyStringNode $content)
-    {
-        return $this->createFile(
-            $name,
-            $this->stringNodeToString($content)
-        );
-    }
-
     protected function createDirectory($path)
     {
         if (!is_dir($path)) {

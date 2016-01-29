@@ -38,6 +38,10 @@ class DefaultPipeline implements PipelineInterface
             $transformed = $this->transformer->transform($extracted);
             $this->dispatch(Events::TRANSFORM, $transformed);
 
+            if (null === $transformed) {
+                continue;
+            }
+
             $this->loader->load($transformed);
             $this->dispatch(Events::LOAD);
         }

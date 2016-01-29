@@ -8,7 +8,7 @@ class CsvExtractorSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new \SplFileObject(__DIR__.'/../../Fixture/extract.csv'));
+        $this->beConstructedWith(new \SplFileObject(__DIR__.'/../../../fixtures/books.csv'));
     }
 
     function it_is_initializable()
@@ -23,24 +23,25 @@ class CsvExtractorSpec extends ObjectBehavior
 
     function it_iterates_over_csv_rows()
     {
-        $this->extract()->shouldReturn(['a1', 'b1', 'c1']);
-        $this->extract()->shouldReturn(['a2', 'b2', 'c2']);
-        $this->extract()->shouldReturn(['a3', 'b3', 'c3']);
+        $this->extract()->shouldReturn(['99921-58-10-7', 'Divine Comedy', 'Dante Alighieri']);
+        $this->extract()->shouldReturn(['9971-5-0210-0', 'A Tale of Two Cities', 'Charles Dickens']);
+        $this->extract()->shouldReturn(['960-425-059-0', 'The Lord of the Rings', 'J. R. R. Tolkien']);
+        $this->extract()->shouldReturn(['80-902734-1-6', 'And Then There Were None', 'Agatha Christie']);
     }
 
     function it_moves_over_csv_rows()
     {
-        $this->current()->shouldReturn(['a1', 'b1', 'c1']);
+        $this->current()->shouldReturn(['99921-58-10-7', 'Divine Comedy', 'Dante Alighieri']);
         $this->next();
-        $this->current()->shouldReturn(['a2', 'b2', 'c2']);
+        $this->current()->shouldReturn(['9971-5-0210-0', 'A Tale of Two Cities', 'Charles Dickens']);
         $this->next();
-        $this->current()->shouldReturn(['a3', 'b3', 'c3']);
+        $this->current()->shouldReturn(['960-425-059-0', 'The Lord of the Rings', 'J. R. R. Tolkien']);
     }
 
     function it_rewinds()
     {
-        $this->extract()->shouldReturn(['a1', 'b1', 'c1']);
+        $this->extract()->shouldReturn(['99921-58-10-7', 'Divine Comedy', 'Dante Alighieri']);
         $this->rewind();
-        $this->extract()->shouldReturn(['a1', 'b1', 'c1']);
+        $this->extract()->shouldReturn(['99921-58-10-7', 'Divine Comedy', 'Dante Alighieri']);
     }
 }
