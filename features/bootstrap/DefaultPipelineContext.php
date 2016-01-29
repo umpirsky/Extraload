@@ -18,18 +18,9 @@ use Extraload\Loader\Doctrine\DbalLoader;
 class DefaultPipelineContext extends BaseContext implements Context, SnippetAcceptingContext
 {
     private $workingTable = 'book';
-    private $workingFile;
     private $pipeline;
     private $output;
     private $connection;
-
-    /**
-     * @Given a file named :name with:
-     */
-    public function aFileNamedWith($name, PyStringNode $content)
-    {
-        $this->workingFile = $this->createFileFromStringNode($name, $content);
-    }
 
     /**
      * @Given I create csv to console pipeline using :transformer transformer
@@ -99,7 +90,7 @@ class DefaultPipelineContext extends BaseContext implements Context, SnippetAcce
 
     private function createCsvExtractor()
     {
-        return new CsvExtractor(new \SplFileObject($this->workingFile));
+        return new CsvExtractor(new \SplFileObject(__DIR__.'/../../fixtures/books.csv'));
     }
 
     private function createTransformer($type)

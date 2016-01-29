@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 (new DefaultPipeline(
     new CsvExtractor(
-        new \SplFileObject(__DIR__.'/../spec/Fixture/extract.csv')
+        new \SplFileObject(__DIR__.'/../fixtures/books.csv')
     ),
     new NoopTransformer(),
     new ConsoleLoader(

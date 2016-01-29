@@ -17,6 +17,10 @@ class HookContext extends BaseContext implements Context
      */
     public function cleanup()
     {
+        if (!is_dir(self::$workingDirectory)) {
+            return;
+        }
+
         $this->clearDirectory(self::$workingDirectory);
     }
 
