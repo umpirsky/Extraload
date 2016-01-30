@@ -2,7 +2,7 @@
 
 namespace Extraload\Extractor;
 
-class CsvExtractor implements ExtractorInterface
+class CsvExtractor implements ExtractorIteratorInterface
 {
     private $file;
 

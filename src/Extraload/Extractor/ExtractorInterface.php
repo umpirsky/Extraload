@@ -2,7 +2,7 @@
 
 namespace Extraload\Extractor;
 
-interface ExtractorInterface extends \Iterator
+interface ExtractorInterface
 {
     public function extract();
 }

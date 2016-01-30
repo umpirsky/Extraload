@@ -23,12 +23,16 @@
         "symfony/console": "^3.0",
         "doctrine/dbal": "^2.5",
         "symfony/property-access": "^3.0",
-        "behat/mink-selenium2-driver": "^1.3"
+        "behat/mink-selenium2-driver": "^1.3",
+        "misterion/ko-process": "^0.5.2",
+        "videlalvaro/php-amqplib": "^2.6"
     },
     "suggest": {
         "doctrine/dbal": "Allows loading data into database using DBAL loader",
         "symfony/property-access": "Allows applying transformer on property by path",
-        "symfony/console": "Allows displaying tabular data in console"
+        "symfony/console": "Allows displaying tabular data in console",
+        "misterion/ko-process": "Allows using queued pipeline",
+        "videlalvaro/php-amqplib": "Allows using queued pipeline"
     },
     "license": "MIT",
     "authors": [

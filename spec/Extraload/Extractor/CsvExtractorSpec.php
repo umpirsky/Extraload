@@ -18,7 +18,7 @@ class CsvExtractorSpec extends ObjectBehavior
 
     function it_implements_extractor_interface()
     {
-        $this->shouldImplement('Extraload\Extractor\ExtractorInterface');
+        $this->shouldImplement('Extraload\Extractor\ExtractorIteratorInterface');
     }
 
     function it_iterates_over_csv_rows()

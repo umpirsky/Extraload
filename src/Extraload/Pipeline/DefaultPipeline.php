@@ -2,7 +2,7 @@
 
 namespace Extraload\Pipeline;
 
-use Extraload\Extractor\ExtractorInterface;
+use Extraload\Extractor\ExtractorIteratorInterface;
 use Extraload\Transformer\TransformerInterface;
 use Extraload\Loader\LoaderInterface;
 use Extraload\Events;
@@ -17,7 +17,7 @@ class DefaultPipeline implements PipelineInterface
     private $eventDispatcher;
 
     public function __construct(
-        ExtractorInterface $extractor,
+        ExtractorIteratorInterface $extractor,
         TransformerInterface $transformer,
         LoaderInterface $loader,
         EventDispatcherInterface $eventDispatcher = null
