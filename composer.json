@@ -23,7 +23,9 @@
         "symfony/console": "^3.0",
         "doctrine/dbal": "^2.5",
         "symfony/property-access": "^3.0",
-        "behat/mink-selenium2-driver": "^1.3"
+        "behat/mink-selenium2-driver": "^1.3",
+        "amphp/thread": "^0.8.1",
+        "videlalvaro/php-amqplib": "^2.6"
     },
     "suggest": {
         "doctrine/dbal": "Allows loading data into database using DBAL loader",
