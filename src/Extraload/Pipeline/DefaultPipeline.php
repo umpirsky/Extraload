@@ -43,7 +43,7 @@ class DefaultPipeline implements PipelineInterface
             }
 
             $this->loader->load($transformed);
-            $this->dispatch(Events::LOAD);
+            $this->dispatch(Events::LOAD, $transformed);
         }
 
         $this->loader->flush();
