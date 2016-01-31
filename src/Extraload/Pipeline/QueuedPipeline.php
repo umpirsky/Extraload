@@ -7,6 +7,7 @@ use Extraload\Transformer\TransformerInterface;;
 use Extraload\Loader\QueuedLoader;
 use PhpAmqpLib\Connection\AbstractConnection;
 use Ko\ProcessManager;
+use Ko\Process;
 
 class QueuedPipeline implements PipelineInterface
 {
@@ -33,9 +34,16 @@ class QueuedPipeline implements PipelineInterface
 
     public function process()
     {
-        $this->extractor->extract();
-        $this->loader->load();
-        $this->loader->flush();
-        $this->connection->close();
+        $this->processManager->fork(function(Process $process) {
+            echo 'Extracting... ' . PHP_EOL;
+            $this->extractor->extract();
+        });
+
+        $this->processManager->fork(function(Process $process) {
+            echo 'Loading... ' . PHP_EOL;
+            $this->loader->load();
+        });
+
+        $this->processManager->wait();
     }
 }
