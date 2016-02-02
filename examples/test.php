@@ -11,14 +11,6 @@ $broker = new Ko\AmqpBroker($config);
 $processManager = new ProcessManager();
 
 $processManager->fork(function(Process $process) use ($broker) {
-    $producer = $broker->getProducer('extractor');
-    $message = 'Hello world ' . time();
-    echo 'Sending message `' . $message . '`' . PHP_EOL ;
-    $producer->publish($message);
-
-});
-
-$processManager->fork(function(Process $process) use ($broker) {
     $consumer = $broker->getConsumer('extractor');
     $message = 'Hello world ' . time();
     echo 'Receiving message `' . $message . '`' . PHP_EOL ;
@@ -27,6 +19,14 @@ $processManager->fork(function(Process $process) use ($broker) {
 
         return true;
     }, AMQP_AUTOACK);
+});
+
+$processManager->fork(function(Process $process) use ($broker) {
+    $producer = $broker->getProducer('extractor');
+    $message = 'Hello world ' . time();
+    echo 'Sending message `' . $message . '`' . PHP_EOL ;
+    $producer->publish($message);
+
 });
 
 $processManager->wait();

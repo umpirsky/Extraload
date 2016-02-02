@@ -13,6 +13,6 @@ consumers:
     connection: default
     queue_options:
       name: 'extractor_queue'
-      durable: 0
+      durable: 1
       autodelete: 0
       binding: {name: 'extractor_exchange', routing-keys: '*'}
