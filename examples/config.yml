@@ -15,4 +15,4 @@ consumers:
       name: 'extractor_queue'
       durable: 1
       autodelete: 0
-      binding: {name: 'extractor_exchange', routing-keys: '*'}
+      binding: {name: 'extractor_exchange', routing-keys: ''}
