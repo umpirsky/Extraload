@@ -8,22 +8,20 @@ use PhpAmqpLib\Message\AMQPMessage;
 class QueuedExtractor implements ExtractorInterface
 {
     private $extractor;
-    private $channel;
+    private $broker;
     private $routingKey;
 
-    public function __construct(ExtractorIteratorInterface $extractor, AMQPChannel $channel, $routingKey)
+    public function __construct(ExtractorIteratorInterface $extractor, $broker, $routingKey)
     {
         $this->extractor = $extractor;
-        $this->channel = $channel;
+        $this->broker = $broker;
         $this->routingKey = $routingKey;
     }
 
     public function extract()
     {
         while (null !== $extracted = $this->extractor->extract()) {
-            $this->channel->basic_publish(new AMQPMessage(serialize($extracted)), null, $this->routingKey);
+            $this->broker->getProducer('extractor')->publish(json_encode($extracted));
         }
-
-        $this->channel->close();
     }
 }

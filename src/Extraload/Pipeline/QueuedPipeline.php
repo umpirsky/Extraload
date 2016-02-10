@@ -15,21 +15,18 @@ class QueuedPipeline implements PipelineInterface
     private $transformer;
     private $loader;
     private $processManager;
-    private $connection;
 
     public function __construct(
         QueuedExtractor $extractor,
         TransformerInterface $transformer,
         QueuedLoader $loader,
-        ProcessManager $processManager,
-        AbstractConnection $connection
+        ProcessManager $processManager
     )
     {
         $this->extractor = $extractor;
         $this->transformer = $transformer;
         $this->loader = $loader;
         $this->processManager = $processManager;
-        $this->connection = $connection;
     }
 
     public function process()

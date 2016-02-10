@@ -16,9 +16,11 @@ class MessageLoader implements LoaderInterface
 
     public function load($data = null)
     {
-        if (!$data instanceof AMQPMessage) {
-            throw new \InvalidArgumentException('MessageLoader can only load AMQPMessage.');
+        if (!$data instanceof AMQPEnvelope) {
+            throw new \InvalidArgumentException('MessageLoader can only load AMQPEnvelope.');
         }
+
+        dump($data->getBody());exit;
 
         $this->loader->load(unserialize($data->body));
     }
