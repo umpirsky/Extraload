@@ -7,7 +7,7 @@ connections:
 producers:
   extractor:
     connection: default
-    exchange_options: {name: 'extractor_exchange', type: direct, durable: 0, passive: 0}
+    exchange_options: {name: 'extractor_exchange', type: direct, durable: 1, passive: 0}
 consumers:
   extractor:
     connection: default
