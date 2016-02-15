@@ -5,7 +5,6 @@ namespace Extraload\Pipeline;
 use Extraload\Extractor\QueuedExtractor;
 use Extraload\Transformer\TransformerInterface;;
 use Extraload\Loader\QueuedLoader;
-use PhpAmqpLib\Connection\AbstractConnection;
 use Ko\ProcessManager;
 use Ko\Process;
 
