@@ -3,18 +3,17 @@
 namespace Extraload\Loader;
 
 use PhpAmqpLib\Channel\AMQPChannel;
+use Ko\AmqpBroker;
 
 class QueuedLoader implements LoaderInterface
 {
     private $loader;
     private $broker;
-    private $queue;
 
-    public function __construct(LoaderInterface $loader, $broker, $queue)
+    public function __construct(LoaderInterface $loader, AmqpBroker $broker)
     {
         $this->loader = $loader;
         $this->broker = $broker;
-        $this->queue = $queue;
     }
 
     public function load($data = null)

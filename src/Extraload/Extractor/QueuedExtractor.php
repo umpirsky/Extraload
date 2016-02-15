@@ -4,18 +4,17 @@ namespace Extraload\Extractor;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Message\AMQPMessage;
+use Ko\AmqpBroker;
 
 class QueuedExtractor implements ExtractorInterface
 {
     private $extractor;
     private $broker;
-    private $routingKey;
 
-    public function __construct(ExtractorIteratorInterface $extractor, $broker, $routingKey)
+    public function __construct(ExtractorIteratorInterface $extractor, AmqpBroker $broker)
     {
         $this->extractor = $extractor;
         $this->broker = $broker;
-        $this->routingKey = $routingKey;
     }
 
     public function extract()

@@ -26,14 +26,12 @@ $loader = new ConsoleLoader(
         new CsvExtractor(
             new \SplFileObject(__DIR__.'/../fixtures/books.csv')
         ),
-        $broker,
-        'extracted'
+        $broker
     ),
     new NoopTransformer(),
     new QueuedLoader(
         new MessageLoader($loader),
-        $broker,
-        'extracted'
+        $broker
     ),
     new ProcessManager()
 ))->process();
