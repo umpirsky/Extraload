@@ -4,7 +4,7 @@ namespace Extraload\Loader;
 
 use Extraload\Loader\LoaderInterface;
 
-class MessageLoader implements LoaderInterface
+class MessageLoader extends AutoFlushLoader implements LoaderInterface
 {
     private $loader;
 
@@ -20,10 +20,7 @@ class MessageLoader implements LoaderInterface
         }
 
         $this->loader->load(unserialize($data->getBody()));
-    }
 
-    public function flush()
-    {
         $this->loader->flush();
     }
 }
