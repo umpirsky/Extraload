@@ -3,7 +3,6 @@
 namespace Extraload\Loader;
 
 use Extraload\Loader\LoaderInterface;
-use PhpAmqpLib\Message\AMQPMessage;
 
 class MessageLoader implements LoaderInterface
 {
@@ -16,11 +15,11 @@ class MessageLoader implements LoaderInterface
 
     public function load($data = null)
     {
-        if (!$data instanceof AMQPEnvelope) {
+        if (!$data instanceof \AMQPEnvelope) {
             throw new \InvalidArgumentException('MessageLoader can only load AMQPEnvelope.');
         }
 
-        $this->loader->load(unserialize($data->body));
+        $this->loader->load(unserialize($data->getBody()));
     }
 
     public function flush()

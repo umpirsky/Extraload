@@ -20,7 +20,7 @@ class QueuedExtractor implements ExtractorInterface
     public function extract()
     {
         while (null !== $extracted = $this->extractor->extract()) {
-            $this->broker->getProducer('extractor')->publish(json_encode($extracted));
+            $this->broker->getProducer('extractor')->publish(serialize($extracted));
         }
     }
 }
