@@ -20,8 +20,6 @@ class MessageLoader implements LoaderInterface
             throw new \InvalidArgumentException('MessageLoader can only load AMQPEnvelope.');
         }
 
-        dump($data->getBody());exit;
-
         $this->loader->load(unserialize($data->body));
     }
 
