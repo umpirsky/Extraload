@@ -5,13 +5,14 @@ namespace spec\Extraload\Loader;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Extraload\Loader\LoaderInterface;
-use PhpAmqpLib\Channel\AMQPChannel;
+use Ko\AmqpBroker;
+use Ko\RabbitMq\Consumer;
 
 class QueuedLoaderSpec extends ObjectBehavior
 {
-    function let(LoaderInterface $loader, AMQPChannel $channel)
+    function let(LoaderInterface $loader, AmqpBroker $broker)
     {
-        $this->beConstructedWith($loader, $channel, 'transformed');
+        $this->beConstructedWith($loader, $broker, 'transformed');
     }
 
     function it_is_initializable()
@@ -24,8 +25,11 @@ class QueuedLoaderSpec extends ObjectBehavior
         $this->shouldImplement('Extraload\Loader\LoaderInterface');
     }
 
-    function it_publihes_messages_from_given_channel(LoaderInterface $loader, AMQPChannel $channel)
+    function it_publihes_messages_from_given_channel(LoaderInterface $loader, AmqpBroker $broker, Consumer $consumer)
     {
-        $channel->basic_consume('transformed', '', false, false, false, false, [$loader, 'load']);
+        $broker->getConsumer('transformed')->shouldBeCalled()->willReturn($consumer);
+        $consumer->consume([$loader, 'load'], AMQP_AUTOACK);
+
+        $this->load();
     }
 }

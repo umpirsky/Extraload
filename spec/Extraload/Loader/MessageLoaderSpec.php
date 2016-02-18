@@ -5,7 +5,6 @@ namespace spec\Extraload\Loader;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Extraload\Loader\LoaderInterface;
-use PhpAmqpLib\Message\AMQPMessage;
 
 class MessageLoaderSpec extends ObjectBehavior
 {
@@ -29,11 +28,12 @@ class MessageLoaderSpec extends ObjectBehavior
         $this->shouldThrow('InvalidArgumentException')->duringLoad(['foo' => 'bar']);
     }
 
-    function it_loads_data_from_message_using_given_loader(LoaderInterface $loader)
+    function it_loads_data_from_message_using_given_loader(LoaderInterface $loader, \AMQPEnvelope $envelope)
     {
-        $message = new AMQPMessage(serialize(['foo' => 'bar']));
+        $envelope->getBody()->shouldBeCalled()->willReturn(serialize(['foo' => 'bar']));
         $loader->load(['foo' => 'bar'])->shouldBeCalled();
+        $loader->flush()->shouldBeCalled();
 
-        $this->load($message);
+        $this->load($envelope);
     }
 }

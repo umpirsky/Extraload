@@ -2,7 +2,6 @@
 
 namespace Extraload\Loader;
 
-use PhpAmqpLib\Channel\AMQPChannel;
 use Ko\AmqpBroker;
 
 class QueuedLoader extends AutoFlushLoader implements LoaderInterface

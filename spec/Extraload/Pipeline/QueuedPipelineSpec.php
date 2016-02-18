@@ -7,7 +7,6 @@ use Prophecy\Argument;
 use Extraload\Extractor\QueuedExtractor;
 use Extraload\Transformer\TransformerInterface;;
 use Extraload\Loader\QueuedLoader;
-use PhpAmqpLib\Connection\AbstractConnection;
 use Ko\ProcessManager;
 
 class QueuedPipelineSpec extends ObjectBehavior
@@ -16,11 +15,10 @@ class QueuedPipelineSpec extends ObjectBehavior
         QueuedExtractor $extractor,
         TransformerInterface $transformer,
         QueuedLoader $loader,
-        ProcessManager $processManager,
-        AbstractConnection $connection
+        ProcessManager $processManager
     )
     {
-        $this->beConstructedWith($extractor, $transformer, $loader, $processManager, $connection);
+        $this->beConstructedWith($extractor, $transformer, $loader, $processManager);
     }
 
     function it_is_initializable()

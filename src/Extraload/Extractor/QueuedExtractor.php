@@ -2,8 +2,6 @@
 
 namespace Extraload\Extractor;
 
-use PhpAmqpLib\Channel\AMQPChannel;
-use PhpAmqpLib\Message\AMQPMessage;
 use Ko\AmqpBroker;
 
 class QueuedExtractor implements ExtractorInterface
