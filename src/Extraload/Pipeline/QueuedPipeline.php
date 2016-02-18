@@ -31,12 +31,10 @@ class QueuedPipeline implements PipelineInterface
     public function process()
     {
         $this->processManager->fork(function(Process $process) {
-            echo 'Extracting... ' . PHP_EOL;
             $this->extractor->extract();
         });
 
         $this->processManager->fork(function(Process $process) {
-            echo 'Loading... ' . PHP_EOL;
             $this->loader->load();
         });
 
