@@ -21,5 +21,6 @@ class ConsoleLoader implements LoaderInterface
     public function flush()
     {
         $this->table->render();
+        $this->table->setRows([]);
     }
 }
