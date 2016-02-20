@@ -6,6 +6,8 @@ require __DIR__.'/../vendor/autoload.php';
 use Extraload\Pipeline\QueuedPipeline;
 use Extraload\Extractor\CsvExtractor;
 use Extraload\Extractor\QueuedExtractor;
+use Extraload\Transformer\QueuedTransformer;
+use Extraload\Transformer\TransformerConsumer;
 use Extraload\Transformer\NoopTransformer;
 use Extraload\Loader\QueuedLoader;
 use Extraload\Loader\ConsoleLoader;
@@ -29,11 +31,15 @@ $loader = new ConsoleLoader(
         $broker,
         'extractor'
     ),
-    new NoopTransformer(),
+    new QueuedTransformer(
+        new TransformerConsumer(
+            new NoopTransformer(), $broker, 'transformer'
+        ), $broker, 'extractor'
+    ),
     new QueuedLoader(
         new MessageLoader($loader),
         $broker,
-        'extractor'
+        'transformer'
     ),
     new ProcessManager()
 ))->process();

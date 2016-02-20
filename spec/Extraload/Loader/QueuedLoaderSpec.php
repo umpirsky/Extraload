@@ -25,7 +25,7 @@ class QueuedLoaderSpec extends ObjectBehavior
         $this->shouldImplement('Extraload\Loader\LoaderInterface');
     }
 
-    function it_publihes_messages_from_given_channel(LoaderInterface $loader, AmqpBroker $broker, Consumer $consumer)
+    function it_consumes_messages_from_given_channel(LoaderInterface $loader, AmqpBroker $broker, Consumer $consumer)
     {
         $broker->getConsumer('transformed')->shouldBeCalled()->willReturn($consumer);
         $consumer->consume([$loader, 'load'], AMQP_AUTOACK);

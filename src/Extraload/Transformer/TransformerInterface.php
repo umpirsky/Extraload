@@ -4,5 +4,5 @@ namespace Extraload\Transformer;
 
 interface TransformerInterface
 {
-    public function transform($data);
+    public function transform($data = null);
 }

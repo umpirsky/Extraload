@@ -5,7 +5,7 @@ namespace spec\Extraload\Pipeline;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Extraload\Extractor\QueuedExtractor;
-use Extraload\Transformer\TransformerInterface;;
+use Extraload\Transformer\QueuedTransformer;;
 use Extraload\Loader\QueuedLoader;
 use Ko\ProcessManager;
 
@@ -13,7 +13,7 @@ class QueuedPipelineSpec extends ObjectBehavior
 {
     function let(
         QueuedExtractor $extractor,
-        TransformerInterface $transformer,
+        QueuedTransformer $transformer,
         QueuedLoader $loader,
         ProcessManager $processManager
     )

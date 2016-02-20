@@ -21,7 +21,7 @@ class TransformerChain implements TransformerInterface
         $this->transformers = $transformers;
     }
 
-    public function transform($data)
+    public function transform($data = null)
     {
         foreach ($this->transformers as $transformer) {
             $data = $transformer->transform($data);

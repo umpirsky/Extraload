@@ -11,7 +11,7 @@ class CallbackTransformer implements TransformerInterface
         $this->callback = $callback;
     }
 
-    public function transform($data)
+    public function transform($data = null)
     {
         return call_user_func($this->callback, $data);
     }

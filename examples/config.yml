@@ -8,6 +8,9 @@ producers:
   extractor:
     connection: default
     exchange_options: {name: 'extractor_exchange', type: direct, durable: 1, passive: 0}
+  transformer:
+    connection: default
+    exchange_options: {name: 'transformer_exchange', type: direct, durable: 1, passive: 0}
 consumers:
   extractor:
     connection: default
@@ -16,3 +19,10 @@ consumers:
       durable: 1
       autodelete: 0
       binding: {name: 'extractor_exchange', routing-keys: ''}
+  transformer:
+    connection: default
+    queue_options:
+      name: 'transformer_queue'
+      durable: 1
+      autodelete: 0
+      binding: {name: 'transformer_exchange', routing-keys: ''}

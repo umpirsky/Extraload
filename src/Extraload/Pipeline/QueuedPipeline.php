@@ -3,7 +3,7 @@
 namespace Extraload\Pipeline;
 
 use Extraload\Extractor\QueuedExtractor;
-use Extraload\Transformer\TransformerInterface;;
+use Extraload\Transformer\QueuedTransformer;
 use Extraload\Loader\QueuedLoader;
 use Ko\ProcessManager;
 use Ko\Process;
@@ -17,7 +17,7 @@ class QueuedPipeline implements PipelineInterface
 
     public function __construct(
         QueuedExtractor $extractor,
-        TransformerInterface $transformer,
+        QueuedTransformer $transformer,
         QueuedLoader $loader,
         ProcessManager $processManager
     )
@@ -32,6 +32,10 @@ class QueuedPipeline implements PipelineInterface
     {
         $this->processManager->fork(function(Process $process) {
             $this->extractor->extract();
+        });
+
+        $this->processManager->fork(function(Process $process) {
+            $this->transformer->transform();
         });
 
         $this->processManager->fork(function(Process $process) {
