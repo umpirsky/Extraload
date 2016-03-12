@@ -20,9 +20,23 @@
 
 Powerful ETL library.
 
-## Note
+## Example
 
-> This library is under development.
+Dumping csv data to console:
+
+```php
+(new DefaultPipeline(
+    new CsvExtractor(
+        new \SplFileObject('books.csv')
+    ),
+    new NoopTransformer(),
+    new ConsoleLoader(
+        new Table(new ConsoleOutput())
+    )
+))->process();
+```
+
+See more [examples](https://github.com/umpirsky/Extraload/tree/master/examples).
 
 ## Inspiration
 
