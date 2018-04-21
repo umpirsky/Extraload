@@ -19,7 +19,12 @@ class QueryExtractor implements ExtractorInterface
 
     public function extract()
     {
+        if ($this->position >= count($this->data)) {
+            return;
+        }
+
         $data = $this->current();
+
         $this->next();
 
         return $data;
