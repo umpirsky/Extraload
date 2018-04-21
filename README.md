@@ -21,9 +21,9 @@
 Powerful ETL library.
 
 
-## Examples
+## 1. Examples
 
-### Dumping CSV data into the console
+### 1.1. Dumping CSV data into the console
 
 Input data is given in csv format:
 ```csv
@@ -55,9 +55,9 @@ It can be dumped as table to console:
 ```
 In this example `NoopTransformer` is used, but various transformations can be applied. Transformers can also be chained using `TransformerChain`.
 
-### Dumping a Doctrine query into the console
+### 1.2. Dumping a Doctrine query into the console
 
-Make sure to load the fixtures into a database -- this example works with MySQL:
+First of all make sure to load the fixtures into a database -- this example works with MySQL:
 
     mysql> source /home/standard/projects/Extraload/fixtures/mysql/db-create.sql
     Query OK, 1 row affected (0.00 sec)
@@ -71,7 +71,7 @@ Make sure to load the fixtures into a database -- this example works with MySQL:
     Query OK, 4 rows affected (0.01 sec)
     Records: 4  Duplicates: 0  Warnings: 0
 
-The following code:
+So the following code:
 
 ```php
 (new DefaultPipeline(
@@ -83,18 +83,52 @@ The following code:
 ))->process();
 ```
 
-Will dump the results to the console:
+Will dump these results to the console:
 
     +---------------+--------------------------+------------------+
     | 99921-58-10-7 | Divine Comedy            | Dante Alighieri  |
+    | 9781847493583 | La Vita Nuova            | Dante Alighieri  |
     | 9971-5-0210-0 | A Tale of Two Cities     | Charles Dickens  |
     | 960-425-059-0 | The Lord of the Rings    | J. R. R. Tolkien |
     | 80-902734-1-6 | And Then There Were None | Agatha Christie  |
     +---------------+--------------------------+------------------+
 
+### 1.3. Dumping a Doctrine prepared query into the console
+
+Again, make sure to load the fixtures into the database.
+
+The following code:
+
+```php
+// ...
+
+$sql = "SELECT * FROM books WHERE author = :author";
+$values = [
+    [
+        'parameter' => ':author',
+        'value' => 'Dante Alighieri',
+        'data_type' => PDO::PARAM_STR // optional
+    ]
+];
+
+(new DefaultPipeline(
+    new PreparedQueryExtractor($conn, $sql, $values),
+    new NoopTransformer(),
+    new ConsoleLoader(
+        new Table($output = new ConsoleOutput())
+    )
+))->process();
+```
+
+Will dump the results to the console:
+
+    +---------------+---------------+-----------------+
+    | 99921-58-10-7 | Divine Comedy | Dante Alighieri |
+    | 9781847493583 | La Vita Nuova | Dante Alighieri |
+    +---------------+---------------+-----------------+
 
 See more [examples](https://github.com/umpirsky/Extraload/tree/master/examples).
 
-## Inspiration
+## 2. Inspiration
 
 Inspired by [php-etl](https://github.com/docteurklein/php-etl) and [petl](https://github.com/alimanfoo/petl).
