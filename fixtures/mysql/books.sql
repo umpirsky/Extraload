@@ -17,6 +17,11 @@ CREATE TABLE my_books (
     author VARCHAR(128) NOT NULL
 );
 
+CREATE TABLE your_books (
+    writer VARCHAR(128) NOT NULL,
+    book VARCHAR(128) NOT NULL
+);
+
 INSERT INTO books (isbn, title, author)
 VALUES
 ('99921-58-10-7', 'Divine Comedy', 'Dante Alighieri'),
