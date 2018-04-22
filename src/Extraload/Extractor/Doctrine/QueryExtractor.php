@@ -7,21 +7,26 @@ use Extraload\Extractor\ExtractorInterface;
 
 class QueryExtractor implements ExtractorInterface
 {
-    private $position = 0;
+    private $stmt;
+
+    private $position;
 
     private $data;
 
     public function __construct(Connection $conn, string $sql)
     {
+        $this->stmt = $conn->query($sql);
         $this->position = 0;
-        $this->data = $conn->query($sql)->fetchAll();
+        $this->data = [];
     }
 
     public function extract()
     {
-        if ($this->position >= count($this->data)) {
+        if (count($this->data) >= $this->stmt->rowCount()) {
             return;
         }
+
+        $this->data[$this->position] = $this->stmt->fetch();
 
         $data = $this->current();
 
