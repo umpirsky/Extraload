@@ -13,13 +13,13 @@ class MapFieldsTransformer implements TransformerInterface
 
     public function transform($data)
     {
-        $transformation = [];
+        $result = [];
         foreach ($data as $key => $val) {
             if (array_key_exists($key, $this->fields)) {
-                $transformation[$this->fields[$key]] = $val;
+                $result[$this->fields[$key]] = $val;
             }
         }
 
-        return $transformation;
+        return $result;
     }
 }
