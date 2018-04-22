@@ -20,5 +20,7 @@ class PreparedQueryExtractor extends AbstractExtractor
         $this->stmt->execute();
 
         $this->position = 0;
+
+        $this->data = [];
     }
 }
