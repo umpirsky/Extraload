@@ -21,9 +21,9 @@
 Powerful ETL library.
 
 
-## 1. Examples
+## Examples
 
-### 1.1. Dumping CSV data into the console
+### Dumping CSV data into the console
 
 Input data is given in csv format:
 ```csv
@@ -55,7 +55,7 @@ It can be dumped as table to console:
 ```
 In this example `NoopTransformer` is used, but various transformations can be applied. Transformers can also be chained using `TransformerChain`.
 
-### 1.2. Dumping a Doctrine query into the console
+### Dumping a Doctrine query into the console
 
 First of all make sure to load the fixtures into a database -- this example works with MySQL:
 
@@ -83,7 +83,7 @@ Will dump these results to the console:
     | 80-902734-1-6 | And Then There Were None | Agatha Christie  |
     +---------------+--------------------------+------------------+
 
-### 1.3. Dumping a Doctrine prepared query into the console
+### Dumping a Doctrine prepared query into the console
 
 The following code:
 
@@ -115,7 +115,7 @@ Will dump these results to the console:
     | 9781847493583 | La Vita Nuova | Dante Alighieri |
     +---------------+---------------+-----------------+
 
-### 1.4. Dumping a Doctrine query into a table
+### Dumping a Doctrine query into a table
 
 The following code:
 
