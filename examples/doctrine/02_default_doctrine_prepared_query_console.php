@@ -4,7 +4,7 @@
 require __DIR__.'/../../vendor/autoload.php';
 require './mysql-bootstrap.php';
 
-use Extraload\Extractor\Doctrine\PreparedQueryExtractor;
+use Extraload\Extractor\Doctrine\QueryExtractor;
 use Extraload\Loader\ConsoleLoader;
 use Extraload\Pipeline\DefaultPipeline;
 use Extraload\Transformer\NoopTransformer;
@@ -21,7 +21,7 @@ $values = [
 ];
 
 (new DefaultPipeline(
-    new PreparedQueryExtractor($conn, $sql, $values),
+    new QueryExtractor($conn, $sql, $values),
     new NoopTransformer(),
     new ConsoleLoader(
         new Table($output = new ConsoleOutput())
