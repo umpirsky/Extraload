@@ -16,6 +16,7 @@ class QueryExtractor implements ExtractorInterface
     public function __construct(Connection $conn, string $sql, array $values = [])
     {
         $this->stmt = $conn->prepare($sql);
+
         foreach ($values as $value) {
             $this->stmt->bindValue(
                 $value['parameter'],
@@ -23,6 +24,7 @@ class QueryExtractor implements ExtractorInterface
                 $value['data_type'] ?? null
             );
         }
+
         $this->stmt->execute();
 
         $this->position = 0;
@@ -32,14 +34,13 @@ class QueryExtractor implements ExtractorInterface
 
     public function extract()
     {
-        if (count($this->data) >= $this->stmt->rowCount()) {
+        if (false !== $this->data[$this->position] = $this->stmt->fetch()) {
+            $data = $this->current();
+            $this->next();
+            return $data;
+        } else {
             return;
         }
-        $this->data[$this->position] = $this->stmt->fetch();
-        $data = $this->current();
-        $this->next();
-
-        return $data;
     }
 
     public function current()
