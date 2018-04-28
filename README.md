@@ -100,7 +100,7 @@ $values = [
 ];
 
 (new DefaultPipeline(
-    new PreparedQueryExtractor($conn, $sql, $values),
+    new QueryExtractor($conn, $sql, $values),
     new NoopTransformer(),
     new ConsoleLoader(
         new Table($output = new ConsoleOutput())
