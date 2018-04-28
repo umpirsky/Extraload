@@ -129,8 +129,9 @@ The following code:
 ))->process();
 ```
 
-Will dump these results into `my_books`:
+Will dump the results into the `my_books` table:
 
+    mysql> select * from my_books;
     +----------------+--------------------------+----------------------------+
     | isbn           | title                    | author                     |
     +----------------+--------------------------+----------------------------+
@@ -142,6 +143,7 @@ Will dump these results into `my_books`:
     | 960-425-059-0  | The Lord of the Rings    | J. R. R. Tolkien           |
     | 80-902734-1-6  | And Then There Were None | Agatha Christie            |
     +----------------+--------------------------+----------------------------+
+    7 rows in set (0.00 sec)
 
 ### Doctrine query with field transformation loaded into a table
 
@@ -156,7 +158,6 @@ Let's look again at the `books` table:
     | 960-425-059-0 | The Lord of the Rings    | J. R. R. Tolkien |
     | 80-902734-1-6 | And Then There Were None | Agatha Christie  |
     +---------------+--------------------------+------------------+
-
 
 Now the following code:
 
