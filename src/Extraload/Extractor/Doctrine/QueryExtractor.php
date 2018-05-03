@@ -38,8 +38,6 @@ class QueryExtractor implements ExtractorInterface
             $data = $this->current();
             $this->next();
             return $data;
-        } else {
-            return;
         }
     }
 
