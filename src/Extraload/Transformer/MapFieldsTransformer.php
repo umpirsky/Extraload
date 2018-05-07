@@ -2,6 +2,8 @@
 
 namespace Extraload\Transformer;
 
+use Symfony\Component\PropertyAccess\PropertyAccess;
+
 class MapFieldsTransformer implements TransformerInterface
 {
     private $fields;
@@ -14,9 +16,12 @@ class MapFieldsTransformer implements TransformerInterface
     public function transform($data)
     {
         $result = [];
+
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
         foreach ($data as $key => $val) {
             if (array_key_exists($key, $this->fields)) {
-                $result[$this->fields[$key]] = $val;
+                $propertyAccessor->setValue($result, "[{$this->fields[$key]}]", $val);
             }
         }
 
