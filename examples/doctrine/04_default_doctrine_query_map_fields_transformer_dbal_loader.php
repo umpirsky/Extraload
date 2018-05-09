@@ -2,7 +2,7 @@
 <?php
 
 require __DIR__.'/../../vendor/autoload.php';
-require './mysql-bootstrap.php';
+require __DIR__.'/mysql-bootstrap.php';
 
 use Extraload\Extractor\Doctrine\QueryExtractor;
 use Extraload\Loader\Doctrine\DbalLoader;
