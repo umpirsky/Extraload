@@ -20,7 +20,7 @@ class PropertyTransformer implements TransformerInterface
         $this->path = $path;
     }
 
-    public function transform($data)
+    public function transform($data = null)
     {
         if (null === $data) {
             return;

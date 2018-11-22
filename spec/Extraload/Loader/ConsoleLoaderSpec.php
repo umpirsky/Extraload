@@ -32,6 +32,7 @@ class ConsoleLoaderSpec extends ObjectBehavior
     function it_renders_data_in_console_on_flush(Table $table)
     {
         $table->render()->shouldBeCalled();
+        $table->setRows([])->shouldBeCalled();
 
         $this->flush();
     }

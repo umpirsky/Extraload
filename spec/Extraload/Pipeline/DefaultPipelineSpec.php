@@ -4,7 +4,7 @@ namespace spec\Extraload\Pipeline;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Extraload\Extractor\ExtractorInterface;
+use Extraload\Extractor\ExtractorIteratorInterface;
 use Extraload\Transformer\TransformerInterface;
 use Extraload\Loader\LoaderInterface;
 use Extraload\Events;
@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class DefaultPipelineSpec extends ObjectBehavior
 {
-    function let(ExtractorInterface $extractor, TransformerInterface $transformer, LoaderInterface $loader)
+    function let(ExtractorIteratorInterface $extractor, TransformerInterface $transformer, LoaderInterface $loader)
     {
         $this->beConstructedWith($extractor, $transformer, $loader);
     }
@@ -28,7 +28,7 @@ class DefaultPipelineSpec extends ObjectBehavior
     }
 
     function it_does_not_transform_nor_load_if_no_data_extracted(
-        ExtractorInterface $extractor,
+        ExtractorIteratorInterface $extractor,
         TransformerInterface $transformer,
         LoaderInterface $loader
     )
@@ -41,7 +41,7 @@ class DefaultPipelineSpec extends ObjectBehavior
     }
 
     function it_processes_etl_sequentially(
-        ExtractorInterface $extractor,
+        ExtractorIteratorInterface $extractor,
         TransformerInterface $transformer,
         LoaderInterface $loader
     )
@@ -55,7 +55,7 @@ class DefaultPipelineSpec extends ObjectBehavior
     }
 
     function it_dispatches_events_during_etl_processesing(
-        ExtractorInterface $extractor,
+        ExtractorIteratorInterface $extractor,
         TransformerInterface $transformer,
         LoaderInterface $loader,
         EventDispatcherInterface $eventDispatcher

@@ -13,7 +13,7 @@ class ConsoleLoader implements LoaderInterface
         $this->table = $table;
     }
 
-    public function load($data)
+    public function load($data = null)
     {
         $this->table->addRow($data);
     }
@@ -21,5 +21,6 @@ class ConsoleLoader implements LoaderInterface
     public function flush()
     {
         $this->table->render();
+        $this->table->setRows([]);
     }
 }

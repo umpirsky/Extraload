@@ -17,7 +17,7 @@ class DbalLoader extends AutoFlushLoader implements LoaderInterface
         $this->tableName = $tableName;
     }
 
-    public function load($data)
+    public function load($data = null)
     {
         return $this->connection->insert($this->tableName, $data);
     }
