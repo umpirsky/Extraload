@@ -145,6 +145,46 @@ Will dump the results into the `my_books` table:
     +----------------+--------------------------+----------------------------+
     7 rows in set (0.00 sec)
 
+### Doctrine query with field transformation loaded into a table
+
+Let's look again at the `books` table:
+
+    +---------------+--------------------------+------------------+
+    | isbn          | title                    | author           |
+    +---------------+--------------------------+------------------+
+    | 99921-58-10-7 | Divine Comedy            | Dante Alighieri  |
+    | 9781847493583 | La Vita Nuova            | Dante Alighieri  |
+    | 9971-5-0210-0 | A Tale of Two Cities     | Charles Dickens  |
+    | 960-425-059-0 | The Lord of the Rings    | J. R. R. Tolkien |
+    | 80-902734-1-6 | And Then There Were None | Agatha Christie  |
+    +---------------+--------------------------+------------------+
+
+Now the following code:
+
+```php
+// ...
+(new DefaultPipeline(
+    new QueryExtractor($conn, 'SELECT * FROM books'),
+    new MapFieldsTransformer([
+        'author' => 'writer',
+        'title' => 'book'
+    ]),
+    new DbalLoader($conn, 'your_books')
+))->process();
+```
+
+Will dump these results into `your_books`:
+
+    +------------------+--------------------------+
+    | writer           | book                     |
+    +------------------+--------------------------+
+    | Dante Alighieri  | Divine Comedy            |
+    | Dante Alighieri  | La Vita Nuova            |
+    | Charles Dickens  | A Tale of Two Cities     |
+    | J. R. R. Tolkien | The Lord of the Rings    |
+    | Agatha Christie  | And Then There Were None |
+    +------------------+--------------------------+
+
 See more [examples](https://github.com/umpirsky/Extraload/tree/master/examples).
 
 ## 2. Inspiration
